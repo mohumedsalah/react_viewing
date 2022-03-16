@@ -1,0 +1,21 @@
+.barAnalysis-container {
+  display: flex;
+  width: 30%;
+  flex-direction: column;
+}
+
+.barAnalysis-container-school {
+  display: flex;
+  width: 100%;
+  padding: 9px 0px;
+  align-items: flex-start;
+  padding-left: 0.8rem;
+  flex-direction: column;
+  height: 100%;
+  overflow: scroll;
+  margin-top: 1rem;
+}
+
+.main-barAnalysis {
+  padding: 1rem 0rem;
+}
