@@ -1,3 +1,12 @@
+import { useDispatch } from "react-redux";
+
+import SingleFilter from "./singleFilter/singleFilter";
+import {
+  setCamp,
+  setCountry,
+  setSchool,
+} from "../../../redux/analysisStore/reducer";
+
 import "./filters.css";
 
 interface FilterLists {
@@ -8,52 +17,33 @@ interface FilterLists {
 
 function Filters(props: FilterLists) {
   const { countryList, campList, schoolList } = props;
+  const dispatch = useDispatch();
 
   return (
     <div className="filter">
-      <div>
-        <label>Select Country</label>
-        <select name="country" id="country">
-          {countryList.map((el) => {
-            return (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+      <SingleFilter
+        items={countryList}
+        label={"Select Country"}
+        onChange={(val: string) => {
+          dispatch(setCountry(val));
+        }}
+      />
 
-      <div>
-        <label>Select Camp</label>
-        <select name="cars" id="cars">
-          {campList.map((el) => {
-            return (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            );
-          })}
-        </select>
-      </div>
+      <SingleFilter
+        items={campList}
+        label={"Select Camp"}
+        onChange={(val: string) => {
+          dispatch(setCamp(val));
+        }}
+      />
 
-      <div>
-        <label>Select School</label>
-        <select name="cars" id="cars">
-          {[
-            <option key="all" value="all">
-              "all schools"
-            </option>,
-            ...schoolList.map((el) => {
-              return (
-                <option key={el} value={el}>
-                  {el}
-                </option>
-              );
-            }),
-          ]}
-        </select>
-      </div>
+      <SingleFilter
+        items={["All School", ...schoolList]}
+        label={"Select School"}
+        onChange={(val: string) => {
+          dispatch(setSchool(val));
+        }}
+      />
     </div>
   );
 }

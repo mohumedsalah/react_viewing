@@ -1,36 +1,32 @@
+import { IBarAnalysisProps, ISchool } from "../dto";
+
 import "./barAnalysis.css";
 import SingleUnitForSchool from "./singleUnitForSchool/singleUnitForSchool";
 
+function BarAnalysis(props: IBarAnalysisProps) {
+  const { totalNumberOfLesson, camp, displaySchools } = props;
 
+  // setAnalysedSchools();
 
-function BarAnalysis() {
   return (
     <div className="barAnalysis-container">
       <div className="main-barAnalysis">
         <div className="label-container">
           <label>
-            <span>80</span> Lessons
+            <span>{totalNumberOfLesson}</span> Lessons
           </label>
-          <span> in cop </span>
+          <span> in {camp} </span>
         </div>
       </div>
 
       <div className="barAnalysis-container-school">
-        <SingleUnitForSchool numberOfLessons={17} schoolName={"omar"} />
-
-        <SingleUnitForSchool numberOfLessons={17} schoolName={"omar"} />
-
-        <SingleUnitForSchool numberOfLessons={17} schoolName={"omar"} />
-
-        <SingleUnitForSchool numberOfLessons={17} schoolName={"omar"} />
-
-        <SingleUnitForSchool numberOfLessons={80} schoolName={"salah"} />
-
-        <SingleUnitForSchool numberOfLessons={20} schoolName={"twitter"} />
-
-        <SingleUnitForSchool numberOfLessons={14} schoolName={"mazz"} />
-
-        <SingleUnitForSchool numberOfLessons={45} schoolName={"migoo"} />
+        {displaySchools.map((el: ISchool) => (
+          <SingleUnitForSchool
+          key={el.schoolName}
+            numberOfLessons={el.numOfLesson}
+            schoolName={el.schoolName}
+          />
+        ))}
       </div>
     </div>
   );

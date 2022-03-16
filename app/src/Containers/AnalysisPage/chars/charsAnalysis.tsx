@@ -1,26 +1,19 @@
+import { ICharAnalysisProps } from "../dto";
+
 import "./charAnalysis.css";
 
 import ChartJs from "chart.js/auto";
 import { useEffect } from "react";
+import { monthArray } from "../../../constant";
 
-function CharsAnalysis() {
+function CharsAnalysis(props: ICharAnalysisProps) {
+  const { displaySchoolPerMonth } = props;
+
   useEffect(() => {
+    console.log(displaySchoolPerMonth);
     const gettingData = async () => {
       var barChartData = {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-          "August",
-          "September",
-          "October",
-          "November",
-          "December",
-        ],
+        labels: monthArray,
         datasets: [
           {
             label: "Dataset",
@@ -64,7 +57,8 @@ function CharsAnalysis() {
     };
 
     gettingData();
-  }, []);
+  }, [displaySchoolPerMonth]);
+
   return (
     <div className="char-analysis">
       <canvas id="myChart" style={{ height: "100%", width: "100%" }}></canvas>
