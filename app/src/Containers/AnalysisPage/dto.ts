@@ -15,6 +15,8 @@ export interface ISchool {
 export interface DisplaySchoolPerMonth {
   counts: number[];
   schoolName: string;
+  color:string;
+  viewing: boolean;
 }
 export interface IBarAnalysisProps {
   totalNumberOfLesson: number;

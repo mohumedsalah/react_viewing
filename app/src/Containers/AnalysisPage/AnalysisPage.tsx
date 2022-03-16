@@ -94,6 +94,8 @@ function AnalysisPage() {
     displaySchoolPerMonth.push({
       schoolName: el,
       counts: dataAnalysisForSingleSchool,
+      color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+      viewing: true,
     });
   });
 
@@ -112,7 +114,7 @@ function AnalysisPage() {
       />
 
       <div className="analysis-container">
-        <CharsAnalysis  displaySchoolPerMonth={displaySchoolPerMonth}  />
+        <CharsAnalysis displaySchoolPerMonth={displaySchoolPerMonth} />
 
         <BarAnalysis
           totalNumberOfLesson={totalNumberOfLesson}

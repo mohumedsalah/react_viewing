@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 interface selectProps {
   items: string[];
   onChange: any;
@@ -8,10 +6,6 @@ interface selectProps {
 
 function SingleFilter(props: selectProps) {
   const { items, onChange, label } = props;
-
-  useEffect(() => {
-    onChange(items[0] || "");
-  }, [items, onChange]);
 
   return (
     <div>
