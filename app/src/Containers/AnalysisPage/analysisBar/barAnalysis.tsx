@@ -22,7 +22,7 @@ function BarAnalysis(props: IBarAnalysisProps) {
       <div className="barAnalysis-container-school">
         {displaySchools.map((el: ISchool) => (
           <SingleUnitForSchool
-          key={el.schoolName}
+            key={el.schoolName}
             numberOfLessons={el.numOfLesson}
             schoolName={el.schoolName}
           />

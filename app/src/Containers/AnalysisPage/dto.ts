@@ -10,6 +10,7 @@ export interface Item {
 export interface ISchool {
   numOfLesson: number;
   schoolName: string;
+  color: string;
 }
 
 export interface DisplaySchoolPerMonth {

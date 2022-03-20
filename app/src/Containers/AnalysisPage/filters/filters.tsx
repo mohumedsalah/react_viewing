@@ -8,10 +8,11 @@ import {
 } from "../../../redux/analysisStore/reducer";
 
 import "./filters.css";
+import { ISchool } from "../dto";
 
 interface FilterLists {
   countryList: string[];
-  schoolList: string[];
+  schoolList: ISchool[];
   campList: string[];
 }
 
@@ -38,7 +39,7 @@ function Filters(props: FilterLists) {
       />
 
       <SingleFilter
-        items={["All School", ...schoolList]}
+        items={["All School", ...schoolList.map((el) => el.schoolName)]}
         label={"Select School"}
         onChange={(val: string) => {
           dispatch(setSchool(val));

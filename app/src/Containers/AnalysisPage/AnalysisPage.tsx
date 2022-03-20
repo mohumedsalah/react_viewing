@@ -16,7 +16,7 @@ function AnalysisPage() {
 
   const [campList, setCampList] = useState([""]);
 
-  const [schoolList, setSchoolList] = useState([""]);
+  const [schoolList, setSchoolList] = useState<ISchool[]>([]);
 
   const [items, setItems] = useState([]);
 
@@ -37,7 +37,17 @@ function AnalysisPage() {
           campSet.add(obj.camp);
           schoolSet.add(obj.school);
         });
-        setSchoolList(Array.from(schoolSet));
+        const schoolArr: ISchool[] = [];
+        schoolSet.forEach((el) => {
+          const school: ISchool = {
+            color: "#" + Math.floor(Math.random() * 16777215).toString(16),
+            numOfLesson: 0,
+            schoolName: el,
+          };
+          schoolArr.push(school);
+        });
+        setSchoolList(schoolArr);
+
         setCountryList(Array.from(countrySet));
         setCampList(Array.from(campSet));
       })
@@ -70,12 +80,17 @@ function AnalysisPage() {
   const displaySchoolPerMonth: DisplaySchoolPerMonth[] = [];
   schoolSet.forEach((el) => {
     let numOfLesson = 0;
-    const schoolList = _items.filter((t: Item) => t.school === el);
+    const schoolListL = _items.filter((t: Item) => t.school === el);
 
-    schoolList.forEach((c: Item) => (numOfLesson += c.lessons));
+    schoolListL.forEach((c: Item) => (numOfLesson += c.lessons));
 
     totalNumberOfLesson += numOfLesson;
-    const school: ISchool = { numOfLesson, schoolName: el };
+    const color = schoolList.filter((sc) => sc.schoolName === el);
+    const school: ISchool = {
+      numOfLesson,
+      schoolName: el,
+      color: color[0].color,
+    };
     // bar analysis part
     displaySchools.push(school);
 
@@ -83,7 +98,7 @@ function AnalysisPage() {
     const dataAnalysisForSingleSchool: number[] = [];
     monthArray.forEach((m) => {
       let numLessonsPerMonth = 0;
-      schoolList.forEach((sc: Item) => {
+      schoolListL.forEach((sc: Item) => {
         if (sc.month === m) {
           numLessonsPerMonth += sc.lessons;
         }
