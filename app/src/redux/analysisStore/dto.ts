@@ -3,7 +3,7 @@ export interface State {
   camp: string;
   school: string;
 
-  viewedData: number[][]; // refer to multi school , multi refer
+  viewedData: any; // refer to multi school , multi refer
 }
 
 export interface SelectorState {

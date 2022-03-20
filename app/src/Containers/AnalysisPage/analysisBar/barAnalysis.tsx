@@ -25,6 +25,7 @@ function BarAnalysis(props: IBarAnalysisProps) {
             key={el.schoolName}
             numberOfLessons={el.numOfLesson}
             schoolName={el.schoolName}
+            color={el.color}
           />
         ))}
       </div>

@@ -6,7 +6,7 @@ const initialState: State = {
   camp: "",
   country: "",
   school: "",
-  viewedData: [[]],
+  viewedData: {},
 };
 
 export const counterSlice = createSlice({
@@ -25,10 +25,18 @@ export const counterSlice = createSlice({
       const payload = action.payload;
       state.school = payload;
     },
+    changeViewAnalysis: (state: any, action) => {
+      const payload = action.payload;
+      state.viewedData[payload.schoolName] = {
+        view: payload.view,
+        color: payload.color,
+      };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setCamp, setCountry, setSchool } = counterSlice.actions;
+export const { setCamp, setCountry, setSchool, changeViewAnalysis } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;
