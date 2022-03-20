@@ -21,7 +21,10 @@ function SingleUnitForSchool(props: PropsData) {
   return (
     <div className="single-unit-container">
       <label className="radio-container">
-        <div className="label-container">
+        <div
+          className="label-container"
+          style={{ color: `${checked ? color : "rgb(35 34 34 / 49%)"}` }}
+        >
           <label>
             <span>{numberOfLessons}</span> Lessons
           </label>
@@ -39,7 +42,12 @@ function SingleUnitForSchool(props: PropsData) {
             setChecked(!checked);
           }}
         />
-        <span className="checkmark"></span>
+        <span
+          className="checkmark"
+          style={{
+            backgroundColor: `${checked ? color : "rgb(35 34 34 / 49%)"}`,
+          }}
+        ></span>
       </label>
     </div>
   );

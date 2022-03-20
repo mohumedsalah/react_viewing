@@ -25,6 +25,21 @@ function CharsAnalysis(props: ICharAnalysisProps) {
     },
     responsive: true,
     plugins: {
+      tooltip: {
+        callbacks: {
+          label: function (context: any) {
+            let label = "";
+
+            if (label) {
+              label += ": ";
+            }
+            if (context.parsed.y !== null) {
+              label += context.parsed.y + " lessons";
+            }
+            return label;
+          },
+        },
+      },
       legend: {
         display: false,
       },
@@ -49,11 +64,11 @@ function CharsAnalysis(props: ICharAnalysisProps) {
       )
       .map((el) => {
         return {
-          label: "Dataset",
+          label: `lessons`,
           data: el.counts,
           borderColor: el.color,
           backgroundColor: "white",
-          pointStyle: "circle",
+          pointStyle: "No of lessons",
           borderWidth: 1,
           pointRadius: 10,
           pointHoverRadius: 15,

@@ -10,8 +10,10 @@ import Filters from "./filters/filters";
 import { useSelector } from "react-redux";
 import { SelectorState } from "../../redux/analysisStore/dto";
 import { monthArray } from "../../constant";
+import PageLoader from "../../components/page-loader/page-loader";
 
 function AnalysisPage() {
+  const [loading, setLoading] = useState(true);
   const [countryList, setCountryList] = useState([""]);
 
   const [campList, setCampList] = useState([""]);
@@ -50,8 +52,11 @@ function AnalysisPage() {
 
         setCountryList(Array.from(countrySet));
         setCampList(Array.from(campSet));
+        setLoading(false);
       })
       .catch((err) => {
+        setLoading(false);
+
         console.log(err, "errrrrrrrro");
       });
   }, []);
@@ -117,27 +122,33 @@ function AnalysisPage() {
   //****************end logic for getting data of bar ****************** */
 
   return (
-    <div className="analysisChar">
-      <h3>Analysis Char</h3>
+    <>
+      {loading ? (
+        <PageLoader />
+      ) : (
+        <div className="analysisChar">
+          <h3>Analysis Char</h3>
 
-      <h4>Number of Lessons</h4>
+          <h4>Number of Lessons</h4>
 
-      <Filters
-        countryList={countryList}
-        schoolList={schoolList}
-        campList={campList}
-      />
+          <Filters
+            countryList={countryList}
+            schoolList={schoolList}
+            campList={campList}
+          />
 
-      <div className="analysis-container">
-        <CharsAnalysis displaySchoolPerMonth={displaySchoolPerMonth} />
+          <div className="analysis-container">
+            <CharsAnalysis displaySchoolPerMonth={displaySchoolPerMonth} />
 
-        <BarAnalysis
-          totalNumberOfLesson={totalNumberOfLesson}
-          displaySchools={displaySchools}
-          camp={selectedFilter.analysis.camp}
-        />
-      </div>
-    </div>
+            <BarAnalysis
+              totalNumberOfLesson={totalNumberOfLesson}
+              displaySchools={displaySchools}
+              camp={selectedFilter.analysis.camp}
+            />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 

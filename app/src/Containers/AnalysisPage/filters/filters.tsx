@@ -39,7 +39,7 @@ function Filters(props: FilterLists) {
       />
 
       <SingleFilter
-        items={["All School", ...schoolList.map((el) => el.schoolName)]}
+        items={["-", "All School", ...schoolList.map((el) => el.schoolName)]}
         label={"Select School"}
         onChange={(val: string) => {
           dispatch(setSchool(val));

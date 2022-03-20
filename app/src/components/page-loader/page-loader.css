@@ -1,0 +1,19 @@
+.__loader {
+    height: 100vh;
+  }
+  
+  .__page-loader {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .sweet-loading {
+    background: url("/public/loader.gif") round center center;
+    height: 15rem;
+    width: 15rem;
+    z-index: 9999999;
+  }
+  
