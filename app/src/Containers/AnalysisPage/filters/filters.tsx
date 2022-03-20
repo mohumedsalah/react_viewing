@@ -23,7 +23,7 @@ function Filters(props: FilterLists) {
   return (
     <div className="filter">
       <SingleFilter
-        items={countryList}
+        items={["-", ...countryList]}
         label={"Select Country"}
         onChange={(val: string) => {
           dispatch(setCountry(val));
@@ -31,7 +31,7 @@ function Filters(props: FilterLists) {
       />
 
       <SingleFilter
-        items={campList}
+        items={["-", ...campList]}
         label={"Select Camp"}
         onChange={(val: string) => {
           dispatch(setCamp(val));

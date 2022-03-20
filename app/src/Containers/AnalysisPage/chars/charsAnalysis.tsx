@@ -14,7 +14,6 @@ function CharsAnalysis(props: ICharAnalysisProps) {
   const { displaySchoolPerMonth } = props;
 
   const selectedFilter = useSelector((state: SelectorState) => state);
-  console.log(selectedFilter.analysis.viewedData);
 
   const option: any = {
     scales: {
